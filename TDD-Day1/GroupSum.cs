@@ -24,7 +24,10 @@ namespace TDD_Day1
             {
                 throw new NullReferenceException();
             }
-            for (int i = 0; i < (this._products.Count() / groupsize) + 1; i++)
+            int GroupCount = this._products.Count() % groupsize == 0
+                ? this._products.Count() / groupsize
+                : (this._products.Count() / groupsize) + 1;
+            for (int i = 0; i < GroupCount; i++)
             {
                 yield return this._products.Skip(i * groupsize).Take(groupsize).Sum(SumCol);
             }
